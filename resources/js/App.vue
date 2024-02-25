@@ -1,50 +1,71 @@
+<!-- App.vue -->
 <template>
-  <div class="container">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <router-link :to="{ name: 'home' }">
-          <a class="navbar-brand" href="#">Laravel Vue</a>
-        </router-link>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <router-link :to="{ name: 'home' }">
-                <a class="nav-link active" aria-current="page">Home</a>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link :to="{ name: 'about' }">
-                <a class="nav-link">About</a>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <!-- <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form> -->
+  <div id="app">
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container">
+          <a class="navbar-brand" to="/">Goal.com</a>
+          <div class="collapse navbar-collapse text-secondary" id="navbarNav">
+            <ul class="navbar-nav">
+              <li v-for="(menu, index) in menus" :key="index" class="nav-item">
+                <router-link class="nav-link" :to="menu.link">{{
+                  menu.name
+                }}</router-link>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-    <router-view></router-view>
+      </nav>
+    </div>
+
+    <RouterView />
   </div>
 </template>
 
+<script>
+
+export default {
+  name: "App",
+  data() {
+    return {
+      menus: [
+        {
+          name: "Scores",
+          link: "/",
+        },
+        {
+          name: "League",
+          link: "/league",
+        },
+        {
+          name: "Teams",
+          link: "/teams",
+        },
+        {
+          name: "Register",
+          link: "/registerTeam",
+        },
+      ],
+    };
+  },
+};
+</script>
+
 <style scoped>
-.navbar a {
-  text-decoration: none;
+#app {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-dark .navbar-brand {
+  color: white;
 }
 </style>
